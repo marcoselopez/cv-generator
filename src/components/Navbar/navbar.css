@@ -1,0 +1,12 @@
+.navbar-main-container {
+  height: 70px;
+  width: 100%;
+  background: #35455D;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.navbar-logo {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
