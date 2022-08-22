@@ -1,0 +1,18 @@
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+}
+.form-group {
+  margin-bottom: 1rem;
+  padding-right: 10px;
+}
+.form-button {
+  color: white;
+  background: #35455D;
+  font-size: 1.5rem;
+}
+.title {
+  color: #35455D;
+  padding: 10px 0;
+}
