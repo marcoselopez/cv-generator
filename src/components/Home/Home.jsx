@@ -6,6 +6,7 @@ import './home.css'
 const Home = () => {
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState({})
   const [curriculum, setCurriculum] = useState({
     firstName: "",
     lastName: "",
@@ -50,6 +51,14 @@ const Home = () => {
     skills: ""
   });
 
+  const validateInput = (input) => {
+    if(input.target.value.trim().length > 0){
+      input.target.className = 'form-control is-valid'
+    } else {
+      input.target.className = 'form-control is-invalid'
+    }
+  };
+
 
   const handleChange = (e) => {
     setCurriculum(prev => ({
@@ -59,8 +68,21 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/login', {state: curriculum})
-  }
+    const form = e.target;
+    const address = form.address
+    const firstName = form.firstName
+
+    if (firstName.value.length === 0){
+      setErrors({...errors, firstName: 'Please enter your first name'})
+      firstName.className = 'form-control is-invalid'
+      firstName.focus()
+    } else if(address.value.length === 0){
+      setErrors({...errors, address: 'Please enter your current Address'})
+      address.className = 'form-control is-invalid'
+      address.focus()
+    }
+
+  };
 
   return (
     <div className="container mt-5 mb-5">
@@ -70,7 +92,8 @@ const Home = () => {
         <div className="form-row">
           <div className="form-group col-md-4 col-sm-12">
             <label htmlFor="firstName" className="form-label">First Name</label>
-            <input onChange={handleChange} type="text" name="firstName" placeholder="Your First Name" className="form-control" />
+            <input onBlur={validateInput} onChange={handleChange} type="text" name="firstName" placeholder="Your First Name" className="form-control" value={curriculum.firstName} />
+            {errors.firstName && <small>{errors.firstName}</small>}
           </div>
           <div className="form-group col-md-4 col-sm-12">
             <label htmlFor="lastName" className="form-label">Last Name</label>
@@ -111,6 +134,7 @@ const Home = () => {
           <div className="form-group col-md-4 col-sm-12">
             <label htmlFor="address" className="form-label">Address</label>
             <input onChange={handleChange} type="text" name="address" placeholder="Your Address" className="form-control" />
+            {errors.address && <small>{errors.address}</small>}
           </div>
         </div>
         <div className="form-row">
