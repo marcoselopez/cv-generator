@@ -1,45 +1,15 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import Education from '../ResumeComponents/Education/Education';
 import Social from '../ResumeComponents/Social/Social';
 import General from '../ResumeComponents/General/General';
 import Experience from '../ResumeComponents/Experience/Experience';
-import './home.css'
 import Skills from '../ResumeComponents/Skills/Skills';
+import AuthContext from '../auth/AuthContext';
+import './home.css'
 
 
-const Home = () => {
-  const [errors, setErrors] = useState({});
-  const [curriculum, setCurriculum] = useState({
-    firstName: "",
-    lastName: "",
-    gender: "",
-    age: "",
-    profession: "",
-    location: "",
-    phone: "",
-    email: "",
-    address: "",
-    description: "",
-    github: "",
-    linkedin: "",
-    portfolio: "",
-    educations: [],
-    education: {        
-      educationDegree: "",
-      institutionName: "",
-      educationStartingDate: "",
-      educationEndingDate: ""
-    },
-    experiences: [],
-    experience: {
-      experiencePosition: "",
-      companyName: "",
-      jobStartingDate: "",
-      jobEndingDate: "",
-      jobDescription: ""
-    },
-    skills: ""
-  });
+const Home = () => {  
+  const {errors, setErrors, curriculum, setCurriculum} = useContext(AuthContext);
 
   //-HANDLE CHANGE
   const handleChange = (e) => {
