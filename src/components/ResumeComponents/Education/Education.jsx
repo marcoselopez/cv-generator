@@ -5,7 +5,7 @@ const Education = ({handleChangeEducation, curriculum}) => {
 
   return (
     <>    
-      <h3 className="title">New Education</h3>
+      <h3 className="subtitle">New Education</h3>
       <div className="form-row">
         <div className="form-group col-md-6 col-sm-12">
           <label htmlFor="educationDegree" className="form-label">Education Degree</label>

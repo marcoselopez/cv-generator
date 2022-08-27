@@ -15,10 +15,16 @@
 .title {
   color: #35455D;
   padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #35455D;
+}
+.subtitle {
+  color:#35455D;
+  padding: 10px 0;
 }
 .error {
   color: crimson;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .saved-counter {

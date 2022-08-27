@@ -4,6 +4,7 @@ import Social from '../ResumeComponents/Social/Social';
 import General from '../ResumeComponents/General/General';
 import Experience from '../ResumeComponents/Experience/Experience';
 import './home.css'
+import Skills from '../ResumeComponents/Skills/Skills';
 
 
 const Home = () => {
@@ -30,6 +31,13 @@ const Home = () => {
       educationEndingDate: ""
     },
     experiences: [],
+    experience: {
+      experiencePosition: "",
+      companyName: "",
+      jobStartingDate: "",
+      jobEndingDate: "",
+      jobDescription: ""
+    },
     skills: ""
   });
 
@@ -47,27 +55,12 @@ const Home = () => {
     })
   }
 
-  //-HANDLE SUBMIT
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    // const form = e.target;
-    // const address = form.address
-    // const firstName = form.firstName
-
-    // if (firstName.value.length === 0){
-    //   setErrors({...errors, firstName: 'Please enter your first name'})
-    //   firstName.className = 'form-control is-invalid'
-    //   firstName.focus()
-    // } else if(address.value.length === 0){
-    //   setErrors({...errors, address: 'Please enter your current Address'})
-    //   address.className = 'form-control is-invalid'
-    //   address.focus()
-    // }
-
-    console.log(curriculum)
-
-  };
+  //-HANDLE CHANGE EXPERIENCE
+  const handleChangeExperience = (e) => {
+    setCurriculum({
+      ...curriculum, experience: {...curriculum.experience, [e.target.name]: e.target.value}
+    })
+  }
 
   //-SAVE EDUCATION
   const saveEducation = () => {
@@ -98,8 +91,51 @@ const Home = () => {
   
   //-SAVE EXPERIENCE
   const saveExperience = () => {
-
+    if(
+      curriculum.experience.experiencePosition.length > 0 &&
+      curriculum.experience.companyName.length > 0 &&
+      curriculum.experience.jobStartingDate.length > 0 &&
+      curriculum.experience.jobEndingDate.length > 0 &&
+      curriculum.experience.jobDescription.length > 0
+    ){
+      setCurriculum({
+        ...curriculum, experiences: [...curriculum.experiences, curriculum.experience],
+        experience: {
+          experiencePosition: "",
+          companyName: "",
+          jobStartingDate: "",
+          jobEndingDate: "",
+          jobDescription: ""
+        }
+      })
+    } else {
+      setErrors({
+        ...errors, experience: 'Please enter information on all fields'
+      })
+    }
   }
+
+  //-HANDLE SUBMIT
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // const form = e.target;
+    // const address = form.address
+    // const firstName = form.firstName
+
+    // if (firstName.value.length === 0){
+    //   setErrors({...errors, firstName: 'Please enter your first name'})
+    //   firstName.className = 'form-control is-invalid'
+    //   firstName.focus()
+    // } else if(address.value.length === 0){
+    //   setErrors({...errors, address: 'Please enter your current Address'})
+    //   address.className = 'form-control is-invalid'
+    //   address.focus()
+    // }
+
+    console.log(curriculum)
+
+  };
 
   //* RENDER
   return (
@@ -121,17 +157,13 @@ const Home = () => {
         
         {/* PROFESSIONAL EXPERIENCE SECTION  */}
         <h1 className="title">Professional Experience Details</h1>
-        <Experience handleChangeEducation={handleChange} />
+        <Experience handleChangeExperience={handleChangeExperience} />
+        <div className="saved-counter"><small>Saved Experiences: {curriculum.experiences.length}</small></div>
+        {errors.experience && <div className="error"><small>{errors.experience}</small></div>}
         <div><button onClick={saveExperience} type="button" className="btn btn-success save-button">Save Experience</button></div> 
 
         {/* SKILLS SECTION  */}
-        <h1 className="title">Your Skills</h1>
-        <div className="form-row">
-          <div className="form-group col-sm-12">
-            <label htmlFor="skills" className="form-label">Tell us about your skills</label>
-            <textarea onChange={handleChange} name="skills" id="skills" rows="6" className="form-control" placeholder="e.g HTML, CSS, REACT, Etc."></textarea>
-          </div>
-        </div>
+        <Skills handleChange={handleChange} />
         <button className="py-3 my-3 btn btn-dark col-sm-12 form-button">GENERATE MY CV</button>
       </form>
     </div>
