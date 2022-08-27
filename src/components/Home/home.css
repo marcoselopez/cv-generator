@@ -16,3 +16,19 @@
   color: #35455D;
   padding: 10px 0;
 }
+.error {
+  color: crimson;
+  margin-bottom: 5px;
+}
+
+.saved-counter {
+  text-align: right;
+  font-size: 1.1rem;
+  color: green;
+  font-weight: bolder;
+  margin: 5px 0;
+}
+.saved-counter > small {
+  border: 2px dotted green;
+  padding: 10px;
+}
