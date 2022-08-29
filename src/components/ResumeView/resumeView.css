@@ -1,0 +1,197 @@
+.resume-view {
+  box-shadow: 5px 5px 55px rgba(0,0,0,0.1);
+  height: 1000px;
+  color: #35455D;
+}
+
+/*- MAIN ELEMENTS -*/
+.resume-main {
+  height: 100%;
+}
+.resume-section-title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  border-bottom: 1px solid #35455D;
+  margin-bottom: 1rem;
+}
+.experience-date, .experience-company  {
+  font-size: 0.7rem;
+  margin: 0;
+  color: grey;
+  font-weight: 600;
+}
+.experience-position {
+  font-weight: bold;
+  color: steelblue;
+}
+.resume-about-title {
+  font-weight: bold;
+}
+.resume-skills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.skill-label {
+  margin: 0;
+}
+.progress {
+  height: 30px;
+  border-radius: 0px;
+}
+.progress-bar {
+  background: steelblue;
+}
+.resume-interests-container {
+  padding-bottom: 30px;
+}
+.badge {
+  border-radius: 0;
+  background-color: steelblue !important;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*- SIDEBAR ELEMENTS  -*/
+.resume-sidebar {
+  height: 100%;
+  background: #35455D;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.resume-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.resume-profile > hr, .resume-contact-info > hr {
+  width: 85%;
+}
+.resume-profile-pic {
+  width: 75%;
+  max-width: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.resume-name {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+.resume-profession {
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0;
+}
+.resume-contact-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.resume-contact-info > div {
+  width: 100%;
+}
+.resume-profile-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  padding-left: 2vw;
+}
+.resume-contact-info > div > ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: .6rem;
+  padding-left: 2vw;
+}
+.resume-contact-info > div > ul > li {
+  margin-bottom: 5px;
+}
+.resume-contact-info > div > ul > li > i {
+  padding-right: 10px;
+}
+.resume-education-info {
+  width: 100%;
+}
+.resume-education-info > p {
+  margin: 0;
+  padding-left: 2vw;
+}
+.resume-education-info > p.resume-profile-section-title {
+  margin-bottom: 1rem;
+}
+.education-date {
+  font-size: .7rem;
+  color: steelblue;
+  font-weight: bold;
+}
+.education-degree {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.education-institution {
+  font-size: .9rem;
+  color: lightgray;
+  padding-bottom: .5rem;
+}
+
+
+/*! MEDIA QUERIES !*/
+@media (min-width: 768px) {
+  .resume-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (min-width: 992px) {
+  .resume-contact-info > div > ul {
+    font-size: .9rem;
+  }
+}
+@media (min-width: 1200px) {
+  .resume-contact-info > div > ul {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1400px) {
+  .resume-contact-info > div > ul {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 767px) {
+  .resume-contact-info > div > ul {
+    font-size: 1rem;
+  }
+  .resume-profile-section-title, .resume-education-info > p {
+    padding-left: 10%;
+  }
+  .resume-contact-info > div > ul {
+    padding-left: 10%;
+  }
+  .resume-view {
+    height: 100%;
+  }
+  .resume-education-info {
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 991px){
+  .education-degree {
+    font-size: 0.8rem;
+  }
+  .education-institution {
+    font-size: 0.7rem;
+  }
+  .experience-company {
+    margin-bottom: 5px;
+  }
+}
