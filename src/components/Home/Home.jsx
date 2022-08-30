@@ -64,7 +64,7 @@ const Home = () => {
         {/* SKILLS SECTION  */}
         <Skills handleChange={handleChange} />
 
-        <button className="py-3 my-3 btn btn-dark col-sm-12 form-button">GENERATE MY CV</button>
+        <button className="py-3 my-3 btn btn-dark col-12 form-button">GENERATE MY CV</button>
       </form>
     </div>
   )

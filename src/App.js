@@ -35,7 +35,12 @@ function App() {
       jobEndingDate: "",
       jobDescription: ""
     },
-    skills: ""
+    skills: [],
+    skill: {
+      skillName: "",
+      skillPower: 0
+    },
+    interests: []
   });
 
   return (

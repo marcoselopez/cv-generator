@@ -44,7 +44,7 @@ const Experience = () => {
     <>
       <h3 className="subtitle">New Experience</h3>
       <div className="form-row">
-        <div className="form-group col-md-6 col-sm-12">
+        <div className="form-group col-md-6 col-12">
           <label htmlFor="experiencePosition" className="form-label">Position</label>
           <input 
             value={experiencePosition} 
@@ -56,7 +56,7 @@ const Experience = () => {
             disabled={curriculum.experiences.length === 3 && true}
           />
         </div>
-        <div className="form-group col-md-6 col-sm-12">
+        <div className="form-group col-md-6 col-12">
           <label htmlFor="companyName" className="form-label">Company</label>
           <input
             value={companyName} 
@@ -70,7 +70,7 @@ const Experience = () => {
         </div>
       </div>
       <div className="form-row">
-        <div className="form-group col-md-4 col-sm-12">
+        <div className="form-group col-md-4 col-12">
           <label htmlFor="jobStartingDate" className="form-label">Starting Date</label>
           <input 
             value={jobStartingDate} 
@@ -81,7 +81,7 @@ const Experience = () => {
             disabled={curriculum.experiences.length === 3 && true}
           />
         </div>
-        <div className="form-group col-md-4 col-sm-12">
+        <div className="form-group col-md-4 col-12">
           <label htmlFor="jobEndingDate" className="form-label">Ending Date</label>
           <input 
             value={jobEndingDate} 
@@ -92,7 +92,7 @@ const Experience = () => {
             disabled={curriculum.experiences.length === 3 && true} 
           />
         </div>
-        <div className="form-group col-sm-12">
+        <div className="form-group col-12">
           <label htmlFor="jobDescription" className="form-label">Description</label>
           <textarea 
             value={jobDescription} 

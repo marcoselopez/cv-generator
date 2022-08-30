@@ -6,6 +6,7 @@
 .form-group {
   margin-bottom: 1rem;
   padding-right: 10px;
+
 }
 .form-button {
   color: white;
@@ -15,7 +16,8 @@
 .title {
   color: #35455D;
   padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 20px;
   border-bottom: 1px solid #35455D;
 }
 .subtitle {
@@ -28,11 +30,11 @@
 }
 
 .saved-counter {
-  text-align: right;
+  text-align: left;
   font-size: 1.1rem;
   color: orangered;
   font-weight: bolder;
-  margin: 5px 0;
+  margin: 5px 0 20px 0;
 }
 .saved-counter > small {
   border: 2px dotted orangered;
@@ -40,4 +42,10 @@
 }
 .limit {
   font-size: 1rem;
+}
+.btn {
+  border-radius: 0;
+}
+.form-range {
+  height: 35px;
 }

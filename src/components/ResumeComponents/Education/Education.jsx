@@ -44,7 +44,7 @@ const Education = ({curriculum}) => {
     <>    
       <h3 className="subtitle">New Education</h3>
       <div className="form-row">
-        <div className="form-group col-md-6 col-sm-12">
+        <div className="form-group col-md-6 col-12">
           <label htmlFor="educationDegree" className="form-label">Education Degree</label>
           <input 
             value={educationDegree} 
@@ -56,7 +56,7 @@ const Education = ({curriculum}) => {
             disabled={curriculum.educations.length === 3 && true} 
           />
         </div>
-        <div className="form-group col-md-6 col-sm-12">
+        <div className="form-group col-md-6 col-12">
           <label htmlFor="institutionName" className="form-label">Institution</label>
           <input 
             value={institutionName} 
@@ -70,7 +70,7 @@ const Education = ({curriculum}) => {
         </div>
       </div>
       <div className="form-row">
-        <div className="form-group col-md-4 col-sm-12">
+        <div className="form-group col-md-4 col-12">
           <label htmlFor="educationStartingDate" className="form-label">Starting Date</label>
           <input 
             value={educationStartingDate} 
@@ -81,7 +81,7 @@ const Education = ({curriculum}) => {
             disabled={curriculum.educations.length === 3 && true} 
           />
         </div>
-        <div className="form-group col-md-4 col-sm-12">
+        <div className="form-group col-md-4 col-12">
           <label htmlFor="educationEndingDate" className="form-label">Ending Date</label>
           <input 
             value={educationEndingDate} 
