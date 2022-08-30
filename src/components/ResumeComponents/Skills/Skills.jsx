@@ -5,12 +5,14 @@ const Skills = () => {
   const {errors, setErrors, curriculum, setCurriculum} = useContext(AuthContext);
   const {skillName, skillPower} = curriculum.skill;
 
+  //- HANDLECHANGE SKILL
   const handleChangeSkill = (e) => {
     setCurriculum({
       ...curriculum, skill: {...curriculum.skill, [e.target.name]: e.target.value}
     })
   }
 
+  //- SAVE SKILL
   const saveSkill = () => {
     if(curriculum.skill.skillName.length > 0 && curriculum.skill.skillPower > 0){
       setCurriculum({
