@@ -15,6 +15,7 @@ const ResumeView = () => {
             <img className="resume-profile-pic mt-4" src="https://picsum.photos/400" alt="" />
             <p className="resume-name text-center mt-2">NAME LASTNAME</p>
             <p className="resume-profession">PROFESSION</p>
+            <p className="resume-nationality">NATIONALITY</p>
             <hr />
           </div>
           <div className="resume-contact-info">

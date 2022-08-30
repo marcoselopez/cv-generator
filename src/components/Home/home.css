@@ -25,8 +25,11 @@
   padding: 10px 0;
 }
 .error {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 0.8rem;
   color: crimson;
-  margin-bottom: 10px;
 }
 
 .saved-counter {
@@ -42,6 +45,9 @@
 }
 .limit {
   font-size: 1rem;
+}
+.mini-label {
+  font-size: .7rem;
 }
 .btn {
   border-radius: 0;

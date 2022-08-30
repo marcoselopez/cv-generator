@@ -91,6 +91,11 @@
   text-align: center;
   margin: 0;
 }
+.resume-nationality {
+  font-size: 0.7rem;
+  margin-top: 5px;
+  color: gray;
+}
 .resume-contact-info {
   width: 100%;
   display: flex;

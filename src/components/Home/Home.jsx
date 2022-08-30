@@ -11,14 +11,16 @@ import './home.css'
 
 const Home = () => {  
   const navigate = useNavigate();
-  const {errors, setErrors, curriculum, setCurriculum} = useContext(AuthContext);
+  const {
+    errors,
+    setErrors, 
+    curriculum, 
+    setCurriculum,
+    handleChangeRequired,
+    handleChange
+  } = useContext(AuthContext);
 
-  //-HANDLE CHANGE
-  const handleChange = (e) => {
-    setCurriculum(prev => ({
-      ...prev, [e.target.name]: e.target.value
-    }))
-  }  
+  
 
   //-HANDLE SUBMIT
   const handleSubmit = (e) => {
@@ -38,7 +40,7 @@ const Home = () => {
     //   address.focus()
     // }
 
-    navigate('/resume_view', {state: curriculum})
+    // navigate('/resume_view', {state: curriculum})
 
   };
 
@@ -48,10 +50,10 @@ const Home = () => {
       <form onSubmit={handleSubmit} className="form-section">
 
         {/* GENERAL SECTION  */}
-        <General handleChange={handleChange} errors={errors} curriculum={curriculum} />
+        <General />
 
         {/* SOCIAL SECTION  */}
-        <Social handleChange={handleChange} />
+        <Social />
 
         {/* EDUCATION SECTION  */}
         <h1 className="title">Educational Details <small className="limit">(Up to 3)</small></h1>

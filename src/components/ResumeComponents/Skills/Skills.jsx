@@ -52,7 +52,7 @@ const Skills = () => {
           <input 
             type="range" 
             name="skillPower" 
-            class="form-range" 
+            className="form-range" 
             min="0" 
             max="100" 
             id="customRange2"
