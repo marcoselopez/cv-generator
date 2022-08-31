@@ -34,7 +34,7 @@ function App() {
     skills: [],
     skill: {
       skillName: "",
-      skillPower: 0
+      skillPower: '0'
     },
     interests: []
   });
@@ -48,24 +48,26 @@ function App() {
       ...prev, [e.target.name]: e.target.value
     }))
 
-    if(value.length >= 4 && value.length <= 25){
-      if(noSpecialChars.test(value)){
-        e.target.className = 'form-control is-valid'
-        setErrors({
-          ...errors, [e.target.name]: ''
-        })
-      } else {
-        e.target.className = 'form-control is-invalid'
-        setErrors({
-          ...errors, [e.target.name]: 'No special characters allowed'
-        })
-      }
-    } else {
+    if(value.length < 4 || value.length > 25){
       e.target.className = 'form-control is-invalid'
       setErrors({
         ...errors, [e.target.name]: 'Please indicate a minimum of 4 characters and a maximum of 25'
       })
+      return
     }
+
+    if(!noSpecialChars.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'No special characters allowed'
+      })
+      return
+    }
+
+    e.target.className = 'form-control is-valid'
+    setErrors({
+      ...errors, [e.target.name]: ''
+    })
   }
 
   //- HANDLE CHANGE FOR NON REQUIRED INPUTS
@@ -77,24 +79,34 @@ function App() {
       ...prev, [e.target.name]: e.target.value
     }))
 
-    if(value.length < 26){
-      if(noSpecialChars.test(value)){
-        e.target.className = 'form-control is-valid'
-        setErrors({
-        ...errors, [e.target.name]: ''
-        })
-      } else {
-        e.target.className = 'form-control is-invalid'
-        setErrors({
-          ...errors, [e.target.name]: 'No special characters allowed'
-        })
-      }      
-    } else {
+    if(value.length > 26){
       e.target.className = 'form-control is-invalid'
       setErrors({
         ...errors, [e.target.name]: 'Only a max of 25 characters are allowed'
       })
+      return
     }
+
+    if(!noSpecialChars.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'No special characters allowed'
+      })
+      return
+    }
+
+    if(value === ''){
+      e.target.className = 'form-control'
+      setErrors({
+        ...errors, [e.target.name]: ''
+      })
+      return
+    }
+    
+    e.target.className = 'form-control is-valid'
+    setErrors({
+    ...errors, [e.target.name]: ''
+    })
   }
 
   //- HANDLE CHANGE FOR EMAILS
@@ -106,24 +118,26 @@ function App() {
       ...prev, [e.target.name]: e.target.value
     }))
 
-    if(value.length > 10 && value.length < 30){
-      if(checkEmail.test(value)){
-        e.target.className = 'form-control is-valid'
-        setErrors({
-          ...errors, [e.target.name]: ''
-        })
-      } else {
-        e.target.className = 'form-control is-invalid'
-        setErrors({
-          ...errors, [e.target.name]: 'Please enter a valid email address'
-        })
-      }
-    } else {
+    if(value.length < 10 || value.length > 30){
       e.target.className = 'form-control is-invalid'
       setErrors({
         ...errors, [e.target.name]: 'Please indicate a minimum of 10 characters and a maximum of 30'
       })
+      return
     }
+
+    if(!checkEmail.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Please enter a valid email address'
+      })
+      return
+    }
+
+    e.target.className = 'form-control is-valid'
+    setErrors({
+      ...errors, [e.target.name]: ''
+    })
   }
 
   //- HANDLE CHANGE FOR PHONES
@@ -135,24 +149,66 @@ function App() {
       ...prev, [e.target.name]: e.target.value
     }))
 
-    if(value.length > 7 && value.length < 15){
-      if(checkPhone.test(value)){
-        e.target.className = 'form-control is-valid'
-        setErrors({
-          ...errors, [e.target.name]: ''
-        })
-      } else {
-        e.target.className = 'form-control is-invalid'
-        setErrors({
-          ...errors, [e.target.name]: 'Please enter a valid phone number'
-        })
-      }
-    } else {
+    if(!checkPhone.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Please enter a valid phone number'
+      })
+      return
+    }
+    
+    if(value.length < 7 || value.length > 15){
       e.target.className = 'form-control is-invalid'
       setErrors({
         ...errors, [e.target.name]: 'Please indicate a minimum of 7 characters and a maximum of 30'
       })
+      return
     }
+
+    e.target.className = 'form-control is-valid'
+    setErrors({
+      ...errors, [e.target.name]: ''
+    })
+  }
+
+  //- HANDLE CHANGE FOR URLS
+  const handleChangeUrl = (e) => {
+    const checkUrl = /^(|https?:\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)$/;
+    const value = e.target.value;
+
+    setCurriculum(prev => ({
+      ...prev, [e.target.name]: e.target.value
+    }))
+    
+    if(!checkUrl.test(value)){
+      e.target.className = 'form-control is-invalid'
+        setErrors({
+          ...errors, [e.target.name]: 'Please enter a valid complete url'
+        })
+      return
+    }
+
+    if(value.length > 50){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Please indicate a minimum of 10 characters and a maximum of 50'
+      })
+      return
+    }
+
+    if(value === ''){
+      e.target.className = 'form-control'
+      setErrors({
+        ...errors, [e.target.name]: ''
+      })
+      return
+    }
+
+    e.target.className = 'form-control is-valid'
+    setErrors({
+      ...errors, [e.target.name]: ''
+    })
+    
   }
 
   //* RENDER
@@ -165,7 +221,8 @@ function App() {
       handleChangeRequired,
       handleChange,
       handleChangeEmail,
-      handleChangePhone
+      handleChangePhone,
+      handleChangeUrl
     }}>
       <div className="App">
         <Router />

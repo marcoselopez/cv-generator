@@ -7,29 +7,79 @@ const Skills = () => {
 
   //- HANDLECHANGE SKILL
   const handleChangeSkill = (e) => {
+    const noSpecialChars = /^[a-zA-ZäöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const value = e.target.value.trim().replaceAll(' ', '');
+
     setCurriculum({
       ...curriculum, skill: {...curriculum.skill, [e.target.name]: e.target.value}
+    })
+
+    if(e.target.type === 'range'){
+      e.target.className = 'form-range'
+      return
+    }
+
+    if(value.length > 25) {
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Only a max of 25 characters are allowed'
+      })
+      return
+    }
+
+    if(!noSpecialChars.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'No special characters allowed'
+      })
+      return
+    }
+
+    if(value === ''){
+      e.target.className = 'form-control'
+      delete errors[e.target.name]
+      setErrors({
+        ...errors
+      })
+      return
+    }
+
+    e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
+    setErrors({
+      ...errors
     })
   }
 
   //- SAVE SKILL
   const saveSkill = () => {
-    if(curriculum.skill.skillName.length > 0 && curriculum.skill.skillPower > 0){
-      setCurriculum({
-        ...curriculum, skills: [...curriculum.skills, curriculum.skill],
-        skill: {
-          skillName: "",
-          skillPower: 0
-        }
-      })
-      setErrors({
-        ...errors, skills: ""
-      })
-    } else {
+    if(
+      curriculum.skill.skillName.trim() === '' ||
+      curriculum.skill.skillPower === '0'
+    ){
       setErrors({
         ...errors, skills: "Please enter a skill and the amount of knowledge on it"
       })
+      return
     }
+
+    if('skillName' in errors){ //! It will be better to use Object.hasOwnProperty('key')
+      setErrors({
+        ...errors, skills: "Please enter a valid skill"
+      })
+      return
+    }
+
+    setCurriculum({
+      ...curriculum, skills: [...curriculum.skills, curriculum.skill],
+      skill: {
+        skillName: "",
+        skillPower: '0'
+      }
+    })
+    setErrors({
+      ...errors, skills: ""
+    })
   }
 
   return (
@@ -46,6 +96,7 @@ const Skills = () => {
             onChange={handleChangeSkill}
             value={skillName}
           />
+          {errors.skillName && <small className="error">{errors.skillName}</small>}
         </div>
         <div className="form-group col-12 col-md-6">
           <label htmlFor="skillPower" className="form-label">Amount of knowledge on this skill:</label>

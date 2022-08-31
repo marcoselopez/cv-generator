@@ -5,39 +5,98 @@ const Education = ({curriculum}) => {
 
   const {errors, setErrors, setCurriculum} = useContext(AuthContext);
   const {educationDegree, institutionName, educationStartingDate, educationEndingDate} = curriculum.education;
+  const date = new Date().toISOString()
+  const today = date.substring(0, date.lastIndexOf('T'))
 
   //-HANDLE CHANGE EDUCATION
   const handleChangeEducation = (e) => {
+    const noSpecialChars = /^[a-zA-ZäöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const value = e.target.value.trim().replaceAll(' ', '');
+
     setCurriculum({
       ...curriculum, education: {...curriculum.education, [e.target.name]: e.target.value}
+    })
+
+    if(e.target.type === 'date'){
+      e.target.className = 'form-control is-valid'
+      delete errors[e.target.name]
+      setErrors({
+        ...errors
+      })
+      return
+    }
+
+    if(!noSpecialChars.test(value)){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Only letters allowed'
+      })
+      return
+    }
+
+    if(value.length > 25){
+      e.target.className = 'form-control is-invalid'
+      setErrors({
+        ...errors, [e.target.name]: 'Only a maximum of 25 characters are allowed'
+      })
+      return
+    }
+
+    if(value === ''){
+      e.target.className = 'form-control'
+      delete errors[e.target.name]
+      setErrors({
+        ...errors
+      })
+      return
+    }
+
+    e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
+    setErrors({
+      ...errors
     })
   }
 
   //-SAVE EDUCATION
   const saveEducation = () => {
     if(
-      curriculum.education.educationDegree.length > 0 &&
-      curriculum.education.institutionName.length > 0 &&
-      curriculum.education.educationStartingDate.length > 0 &&
-      curriculum.education.educationEndingDate.length > 0
+      curriculum.education.educationDegree.trim().length === 0 ||
+      curriculum.education.institutionName.trim().length === 0 ||
+      curriculum.education.educationStartingDate.trim().length === 0 ||
+      curriculum.education.educationEndingDate.trim().length === 0
     ){
-      setCurriculum({
-        ...curriculum, educations: [...curriculum.educations, curriculum.education],
-        education: {
-          educationDegree: '',
-          institutionName: '',
-          educationStartingDate: '',
-          educationEndingDate: ''
-        }
-      })
-      setErrors({
-        ...errors, education: ''
-      })
-    } else {
       setErrors({
         ...errors, education: 'Please enter information on all fields'
       })
+      return
     }
+
+    if(
+      'educationDegree' in errors ||
+      'institutionName' in errors ||
+      'educationStartingDate' in errors ||
+      'educationEndingDate' in errors
+    ){
+      setErrors({
+        ...errors, education: 'Please enter valid information on all fields'
+      })
+      return
+    }
+
+    setCurriculum({
+      ...curriculum, educations: [...curriculum.educations, curriculum.education],
+      education: {
+        educationDegree: '',
+        institutionName: '',
+        educationStartingDate: '',
+        educationEndingDate: ''
+      }
+    })
+    delete errors['education']
+    setErrors({
+      ...errors
+    })
   } 
 
   return (
@@ -55,6 +114,7 @@ const Education = ({curriculum}) => {
             className="form-control"
             disabled={curriculum.educations.length === 3 && true} 
           />
+          {errors.educationDegree && <small className="error">{errors.educationDegree}</small>}
         </div>
         <div className="form-group col-md-6 col-12">
           <label htmlFor="institutionName" className="form-label">Institution</label>
@@ -67,6 +127,7 @@ const Education = ({curriculum}) => {
             className="form-control" 
             disabled={curriculum.educations.length === 3 && true}
           />
+          {errors.institutionName && <small className="error">{errors.institutionName}</small>}
         </div>
       </div>
       <div className="form-row">
@@ -75,7 +136,8 @@ const Education = ({curriculum}) => {
           <input 
             value={educationStartingDate} 
             onChange={handleChangeEducation} 
-            type="date"  
+            type="date" 
+            max={today} 
             name="educationStartingDate" 
             className="form-control"
             disabled={curriculum.educations.length === 3 && true} 
@@ -86,7 +148,9 @@ const Education = ({curriculum}) => {
           <input 
             value={educationEndingDate} 
             onChange={handleChangeEducation} 
-            type="date"  
+            type="date" 
+            min={educationStartingDate}
+            max={today}
             name="educationEndingDate" 
             className="form-control"
             disabled={curriculum.educations.length === 3 && true} 

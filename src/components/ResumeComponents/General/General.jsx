@@ -12,6 +12,16 @@ const General = () => {
     handleChangePhone
   } = useContext(AuthContext);
 
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    profession,
+    nationality,
+    description
+  } = curriculum;
+
   return (
     <>
       <h1 className="title">General Details</h1>
@@ -27,7 +37,7 @@ const General = () => {
               className="form-control"
               minLength={4}
               maxLength={25}
-              value={curriculum.firstName}
+              value={firstName}
             />
             {errors.firstName && <small className="error">{errors.firstName}</small>}
           </div>
@@ -42,7 +52,7 @@ const General = () => {
               className="form-control"
               minLength={4}
               maxLength={25}
-              value={curriculum.lastName}
+              value={lastName}
             />
             {errors.lastName && <small className="error">{errors.lastName}</small>}
           </div>          
@@ -57,7 +67,7 @@ const General = () => {
               className="form-control"
               minLength={10}
               maxLength={30}
-              value={curriculum.email}
+              value={email}
             />
             {errors.email && <small className="error">{errors.email}</small>}
           </div>
@@ -74,7 +84,7 @@ const General = () => {
               className="form-control"
               minLength={7}
               maxLength={15}
-              value={curriculum.phone}
+              value={phone}
             />
             {errors.phone && <small className="error">{errors.phone}</small>}
           </div>
@@ -89,7 +99,7 @@ const General = () => {
               className="form-control"
               minLength={4}
               maxLength={25}
-              value={curriculum.profession} 
+              value={profession} 
             />
             {errors.profession && <small className="error">{errors.profession}</small>}
           </div>
@@ -103,7 +113,7 @@ const General = () => {
               className="form-control"
               minLength={4}
               maxLength={25}
-              value={curriculum.nationality} 
+              value={nationality} 
             />
             {errors.nationality && <small className="error">{errors.nationality}</small>}
           </div>
@@ -119,7 +129,7 @@ const General = () => {
               className="form-control"
               minLength={200}
               maxLength={300}
-              value={curriculum.description}
+              value={description}
             >
             </textarea>
             {errors.description && <small className="error">{errors.description}</small>}

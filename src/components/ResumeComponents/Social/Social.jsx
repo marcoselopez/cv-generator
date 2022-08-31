@@ -3,7 +3,7 @@ import AuthContext from "../../auth/AuthContext";
 
 
 const Social = () => {
-  const {curriculum, errors, handleChange} = useContext(AuthContext);
+  const {curriculum, errors, handleChange, handleChangeUrl} = useContext(AuthContext);
   const {github, linkedin, portfolio} = curriculum;
 
   return (
@@ -45,13 +45,13 @@ const Social = () => {
         <div className="form-group col-md-8 col-12">
           <label htmlFor="portfolio" className="form-label">Personal Portfolio <small className="mini-label">(Optional)</small></label>
           <input 
-            onChange={handleChange} 
+            onChange={handleChangeUrl} 
             type="text" 
             name="portfolio" 
-            placeholder="www.myportfolio.com" 
+            placeholder="http://www.myportfolio.com" 
             className="form-control"
-            minLength={4}
-            maxLength={25}
+            minLength={10}
+            maxLength={50}
             value={portfolio}
           />
           {errors.portfolio && <small className="error">{errors.portfolio}</small>}

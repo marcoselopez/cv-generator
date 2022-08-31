@@ -4,7 +4,7 @@ import './resumeView.css'
 const ResumeView = () => {
   const location = useLocation();
 
-  const space = 25;
+  const space = '25';
 
   return (
     <div className="container my-5">
@@ -140,11 +140,11 @@ const ResumeView = () => {
             <div className="col-12">
               <h3 className="resume-section-title">INTERESTS</h3>
               <div className="resume-interests d-flex justify-content-center align-items-center flex-wrap">
-                <span class="badge text-bg-primary">SKYING</span>
-                <span class="badge text-bg-primary">MUSIC</span>
-                <span class="badge text-bg-primary">GAMING</span>
-                <span class="badge text-bg-primary">TECHNOLOGY</span>
-                <span class="badge text-bg-primary">AEROSPATIALSTATION</span>
+                <span className="badge text-bg-primary">SKYING</span>
+                <span className="badge text-bg-primary">MUSIC</span>
+                <span className="badge text-bg-primary">GAMING</span>
+                <span className="badge text-bg-primary">TECHNOLOGY</span>
+                <span className="badge text-bg-primary">AEROSPATIALSTATION</span>
               </div>
             </div>
           </div>
