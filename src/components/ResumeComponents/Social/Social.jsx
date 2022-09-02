@@ -5,7 +5,7 @@ import AuthContext from "../../auth/AuthContext";
 const Social = () => {
   const {curriculum, errors, handleChange, handleChangeUrl} = useContext(AuthContext);
   const {github, linkedin, portfolio} = curriculum;
-
+  
   return (
     <>
       <h1 className="title">Social Details</h1>

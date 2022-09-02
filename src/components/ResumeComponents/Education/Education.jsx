@@ -94,6 +94,7 @@ const Education = ({curriculum}) => {
       }
     })
     delete errors['education']
+    delete errors['educationsNumber']
     setErrors({
       ...errors
     })
@@ -102,6 +103,7 @@ const Education = ({curriculum}) => {
   return (
     <>    
       <h3 className="subtitle">New Education</h3>
+      {errors.educationsNumber && <small className="submit-error">{errors.educationsNumber}</small>}
       <div className="form-row">
         <div className="form-group col-md-6 col-12">
           <label htmlFor="educationDegree" className="form-label">Education Degree</label>

@@ -31,7 +31,19 @@
   font-size: 0.8rem;
   color: crimson;
 }
-
+.submit-error {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  color: crimson;
+  border: 1px dotted crimson;
+  margin-bottom: 15px;
+}
+.form-section > .submit-error {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 .saved-counter {
   text-align: left;
   font-size: 1.1rem;

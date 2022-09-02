@@ -1,0 +1,41 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-box {
+  width: 500px;
+  color: white;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+  padding: 60px 0;
+  background: #35455D;
+  border-radius: 10px;
+}
+.register-box > h4 {
+  font-weight: bolder;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.register-form-section {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.register-box-footer {
+  width: 75%;
+}
+.register-box-footer > p > a {
+  color: cadetblue;
+  font-weight: bold;
+}
+.register-box > form > .submit-error, .register-box > form > div > div > .error {
+  color: orange;
+  border-color: orange;
+}

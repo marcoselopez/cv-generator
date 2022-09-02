@@ -11,13 +11,11 @@ import './home.css'
 
 const Home = () => {  
   const navigate = useNavigate();
-  const {
+  const { 
+    curriculum,
+    handleChange,
     errors,
-    setErrors, 
-    curriculum, 
-    setCurriculum,
-    handleChangeRequired,
-    handleChange
+    setErrors
   } = useContext(AuthContext);
 
   
@@ -26,27 +24,39 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // const form = e.target;
-    // const address = form.address
-    // const firstName = form.firstName
-
-    // if (firstName.value.length === 0){
-    //   setErrors({...errors, firstName: 'Please enter your first name'})
-    //   firstName.className = 'form-control is-invalid'
-    //   firstName.focus()
-    // } else if(address.value.length === 0){
-    //   setErrors({...errors, address: 'Please enter your current Address'})
-    //   address.className = 'form-control is-invalid'
-    //   address.focus()
+    // if(
+    //   errors.hasOwnProperty('github') ||
+    //   errors.hasOwnProperty('skillName')
+    // ){
+    //   setErrors({
+    //     ...errors, invalidInputs: 'You have incorrect or invalid information, please check'
+    //   })
+    //   return
     // }
 
-    // navigate('/resume_view', {state: curriculum})
+    if(curriculum.educations.length === 0){
+      e.target.educationDegree.focus()
+      setErrors({
+        ...errors, educationsNumber: 'Please enter at least 1 education'
+      })
+      return
+    }
+
+    if(curriculum.experiences.length === 0){
+      e.target.experiencePosition.focus()
+      setErrors({
+        ...errors, experiencesNumber: 'Please enter at least 1 experience'
+      })
+      return
+    }
+
+    navigate('/resume_view', {state: curriculum})
 
   };
 
   //- RENDER
   return (
-    <div className="container mt-5 mb-5">
+    <div className="container mt-5 mb-5 animate__animated animate__fadeIn">
       <form onSubmit={handleSubmit} className="form-section">
 
         {/* GENERAL SECTION  */}
@@ -66,6 +76,7 @@ const Home = () => {
         {/* SKILLS SECTION  */}
         <Skills handleChange={handleChange} />
 
+        {errors.invalidInputs && <small className="submit-error">{errors.invalidInputs}</small>}
         <button className="py-3 my-3 btn btn-dark col-12 form-button">GENERATE MY CV</button>
       </form>
     </div>

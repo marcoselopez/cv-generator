@@ -10,10 +10,11 @@ const Router = () => {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/resume_view" element={<ResumeView />} />
+        <Route path="/resume_create" element={<Home />} />
 
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>

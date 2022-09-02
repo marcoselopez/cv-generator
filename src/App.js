@@ -5,6 +5,16 @@ import Router from "./routes/Router";
 
 function App() {  
   const [errors, setErrors] = useState({});
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  })
+  const [newUser, setNewUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: ''
+  })
   const [curriculum, setCurriculum] = useState({
     firstName: "",
     lastName: "",
@@ -41,12 +51,38 @@ function App() {
 
   //-HANDLE CHANGE FOR REQUIRED INPUTS
   const handleChangeRequired = (e) => {
-    const noSpecialChars = /^[a-zA-Z0-9äöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const noSpecialChars = /^[a-zA-ZäöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const onlySpecialChars = /^\W+$/
     const value = e.target.value.trim().replaceAll(" ", "");
     
     setCurriculum(prev => ({
       ...prev, [e.target.name]: e.target.value
     }))
+
+    if(e.target.name === 'description'){
+      if(onlySpecialChars.test(value)){
+        e.target.className = 'form-control is-invalid'
+        setErrors({
+          ...errors, [e.target.name]: 'Please enter a valid description'
+        })
+        return
+      }
+
+      if(value.length < 50 || value.length > 300){
+        e.target.className = 'form-control is-invalid'
+        setErrors({
+          ...errors, [e.target.name]: 'Please enter a minimum of 50 and a maximum of 300 characters'
+        })
+        return
+      }
+
+      e.target.className = 'form-control is-valid'
+      delete errors[e.target.name]
+      setErrors({
+        ...errors
+      })
+      return
+    }
 
     if(value.length < 4 || value.length > 25){
       e.target.className = 'form-control is-invalid'
@@ -65,14 +101,15 @@ function App() {
     }
 
     e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
     setErrors({
-      ...errors, [e.target.name]: ''
+      ...errors
     })
   }
 
   //- HANDLE CHANGE FOR NON REQUIRED INPUTS
   const handleChange = (e) => {
-    const noSpecialChars = /^[a-zA-Z0-9äöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const noSpecialChars = /^[a-zA-ZäöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
     const value = e.target.value;
     
     setCurriculum(prev => ({
@@ -97,15 +134,17 @@ function App() {
 
     if(value === ''){
       e.target.className = 'form-control'
+      delete errors[e.target.name]
       setErrors({
-        ...errors, [e.target.name]: ''
+        ...errors
       })
       return
     }
     
     e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
     setErrors({
-    ...errors, [e.target.name]: ''
+    ...errors
     })
   }
 
@@ -135,8 +174,9 @@ function App() {
     }
 
     e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
     setErrors({
-      ...errors, [e.target.name]: ''
+      ...errors
     })
   }
 
@@ -166,8 +206,9 @@ function App() {
     }
 
     e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
     setErrors({
-      ...errors, [e.target.name]: ''
+      ...errors
     })
   }
 
@@ -198,15 +239,17 @@ function App() {
 
     if(value === ''){
       e.target.className = 'form-control'
+      delete errors[e.target.name]
       setErrors({
-        ...errors, [e.target.name]: ''
+        ...errors
       })
       return
     }
 
     e.target.className = 'form-control is-valid'
+    delete errors[e.target.name]
     setErrors({
-      ...errors, [e.target.name]: ''
+      ...errors
     })
     
   }
@@ -218,11 +261,15 @@ function App() {
       setErrors,
       curriculum,
       setCurriculum,
+      newUser,
+      setNewUser,
+      user,
+      setUser,
       handleChangeRequired,
       handleChange,
       handleChangeEmail,
       handleChangePhone,
-      handleChangeUrl
+      handleChangeUrl,
     }}>
       <div className="App">
         <Router />

@@ -9,6 +9,7 @@ const Experience = () => {
   //-HANDLE CHANGE EXPERIENCE
   const handleChangeExperience = (e) => {
     const noSpecialChars = /^[a-zA-ZäöüáéíóúÄÖÜÁÉÍÓÚ]*$/;
+    const onlySpecialChars = /^\W+$/
     const value = e.target.value.trim().replaceAll(' ', '');
 
     setCurriculum({
@@ -16,6 +17,40 @@ const Experience = () => {
     })
 
     if(e.target.type === 'date'){
+      e.target.className = 'form-control is-valid'
+      delete errors[e.target.name]
+      setErrors({
+        ...errors
+      })
+      return
+    }
+
+    if(e.target.name === 'jobDescription'){
+      if(onlySpecialChars.test(value)){
+        e.target.className = 'form-control is-invalid'
+        setErrors({
+          ...errors, [e.target.name]: 'Please enter a valid description'
+        })
+        return
+      }
+
+      if(value.length > 300){
+        e.target.className = 'form-control is-invalid'
+        setErrors({
+          ...errors, [e.target.name]: 'Only a maximum of 300 characters are allowed'
+        })
+        return
+      }
+
+      if(value === ''){
+        e.target.className = 'form-control'
+        delete errors[e.target.name]
+        setErrors({
+          ...errors
+        })
+        return
+      }
+
       e.target.className = 'form-control is-valid'
       delete errors[e.target.name]
       setErrors({
@@ -99,6 +134,7 @@ const Experience = () => {
       }
     })
     delete errors['experience']
+    delete errors['experiencesNumber']
     setErrors({
       ...errors
     })
@@ -108,6 +144,7 @@ const Experience = () => {
   return (
     <>
       <h3 className="subtitle">New Experience</h3>
+      {errors.experiencesNumber && <small className="submit-error">{errors.experiencesNumber}</small>}
       <div className="form-row">
         <div className="form-group col-md-6 col-12">
           <label htmlFor="experiencePosition" className="form-label">Position</label>
@@ -171,7 +208,10 @@ const Experience = () => {
             rows="6" 
             className="form-control" 
             placeholder="Responsabilities, technologies, tasks, etc" 
-            disabled={curriculum.experiences.length === 3 && true}>              
+            disabled={curriculum.experiences.length === 3 && true}
+            minLength={30}
+            maxLength={300}
+          >              
           </textarea>
           {errors.jobDescription && <small className="error">{errors.jobDescription}</small>}
         </div>

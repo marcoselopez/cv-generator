@@ -77,14 +77,15 @@ const Skills = () => {
         skillPower: '0'
       }
     })
+    delete errors['skills']
     setErrors({
-      ...errors, skills: ""
+      ...errors
     })
   }
 
   return (
     <>
-      <h1 className="title">Your Skills <small className="limit">(Up to 5)</small></h1>
+      <h1 className="title">Your Skills <small className="limit">(Up to 6)</small></h1>
       <div className="form-row">
         <div className="form-group col-12 col-md-3">
           <label htmlFor="skillName" className="form-label">Skill:</label>
@@ -95,6 +96,7 @@ const Skills = () => {
             className="form-control"
             onChange={handleChangeSkill}
             value={skillName}
+            disabled={curriculum.skills.length === 6}
           />
           {errors.skillName && <small className="error">{errors.skillName}</small>}
         </div>
@@ -109,6 +111,7 @@ const Skills = () => {
             id="customRange2"
             onChange={handleChangeSkill}
             value={skillPower}
+            disabled={curriculum.skills.length === 6}
           />
           <p>{skillPower}%</p>
         </div>
@@ -122,8 +125,8 @@ const Skills = () => {
         <button 
           onClick={saveSkill}
           type="button" 
-          className="btn btn-success save-button" 
-          disabled={curriculum.skills.length === 5 && true}
+          className="btn btn-success save-button mb-3" 
+          disabled={curriculum.skills.length === 6}
         >
           Save Skill
         </button>
